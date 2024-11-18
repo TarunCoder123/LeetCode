@@ -14,6 +14,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0209-minimum-size-subarray-sum](https://github.com/TarunCoder123/LeetCode/tree/master/0209-minimum-size-subarray-sum) |
 | [0892-shortest-subarray-with-sum-at-least-k](https://github.com/TarunCoder123/LeetCode/tree/master/0892-shortest-subarray-with-sum-at-least-k) |
 | [1755-defuse-the-bomb](https://github.com/TarunCoder123/LeetCode/tree/master/1755-defuse-the-bomb) |
+| [1987-substrings-of-size-three-with-distinct-characters](https://github.com/TarunCoder123/LeetCode/tree/master/1987-substrings-of-size-three-with-distinct-characters) |
 | [3522-find-the-power-of-k-size-subarrays-i](https://github.com/TarunCoder123/LeetCode/tree/master/3522-find-the-power-of-k-size-subarrays-i) |
 ## Binary Search
 |  |
@@ -37,4 +38,16 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0892-shortest-subarray-with-sum-at-least-k](https://github.com/TarunCoder123/LeetCode/tree/master/0892-shortest-subarray-with-sum-at-least-k) |
+## Hash Table
+|  |
+| ------- |
+| [1987-substrings-of-size-three-with-distinct-characters](https://github.com/TarunCoder123/LeetCode/tree/master/1987-substrings-of-size-three-with-distinct-characters) |
+## String
+|  |
+| ------- |
+| [1987-substrings-of-size-three-with-distinct-characters](https://github.com/TarunCoder123/LeetCode/tree/master/1987-substrings-of-size-three-with-distinct-characters) |
+## Counting
+|  |
+| ------- |
+| [1987-substrings-of-size-three-with-distinct-characters](https://github.com/TarunCoder123/LeetCode/tree/master/1987-substrings-of-size-three-with-distinct-characters) |
 <!---LeetCode Topics End-->

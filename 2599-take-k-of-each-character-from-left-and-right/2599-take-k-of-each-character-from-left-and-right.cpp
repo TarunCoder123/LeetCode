@@ -1,34 +1,60 @@
 class Solution {
+    bool greaterThanEqualK(unordered_map<char , int>& freq,const int& k) //O(1)
+    {
+        for(auto& [ch , f] : freq)
+        {
+            if(f < k)
+                return false;
+        }
+        return true;
+    }
+    bool possible(int mid , const string& s ,const int& k)
+    {
+        int n = s.size();
+        int i = 0 , j = n - 1;
+        unordered_map<char , int>freq;
+        freq['a'] = 0 , freq['b'] = 0 , freq['c'] = 0;
+        
+        while(i < mid)
+        {
+            freq[s[i]]++;
+            i++;
+        }
+        bool check = greaterThanEqualK(freq,k);
+        if(check) return true;
+        i--;
+        while(i >= 0)
+        {
+            freq[s[i]]--;
+            freq[s[j]]++;
+            i-- , j--;
+            bool check = greaterThanEqualK(freq,k);
+            if(check) return true;
+        }
+        return false;
+    }
 public:
     int takeCharacters(string s, int k) {
-        vector<int> freq(3, 0);
-        int n = s.length();
-        
-        for (char c : s) {
-            freq[c - 'a']++;
-        }
-        
-        if (freq[0] < k || freq[1] < k || freq[2] < k) {
-            return -1;
-        }
-        
-        vector<int> curr(3, 0);
-        int maxLen = 0;
-        int left = 0;
-        
-        for (int right = 0; right < n; right++) {
-            curr[s[right] - 'a']++;
+        if(k == 0)
+            return 0;
+        int sLen = s.size();
+        int low = 1 , high = sLen;
+        int ans = -1;
+        while(low <= high)
+        {
+            int mid = low + (high - low) / 2;
             
-            while (left <= right && (curr[0] > freq[0] - k || 
-                   curr[1] > freq[1] - k || 
-                   curr[2] > freq[2] - k)) {
-                curr[s[left] - 'a']--;
-                left++;
+            bool check = possible(mid , s , k );
+            if(check)
+            {
+                ans = mid;
+                high = mid - 1;
             }
-            
-            maxLen = max(maxLen, right - left + 1);
+            else
+            {
+                low = mid + 1;
+            }
         }
-        
-        return n - maxLen;
+        return ans;
     }
 };

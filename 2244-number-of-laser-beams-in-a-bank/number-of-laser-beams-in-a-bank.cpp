@@ -11,16 +11,11 @@ public:
             }
           }
            if(ans.size()>=1){
-            //   cout<<ans.back()<<" ";
               if(one_count>0){count+=one_count*ans.back();}
-            //   cout<<count
            }
            if(one_count>0){
             ans.push_back(one_count);
            }
-       }
-       for(int i=0;i<ans.size();i++){
-        cout<<ans[i]<<" ";
        }
        return count; 
     }

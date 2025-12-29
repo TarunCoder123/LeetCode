@@ -1,46 +1,28 @@
 class Solution {
 public:
-    int n, k;
-    vector<int> prefix;
-    vector<vector<int>> memo;
-    const int INF = 1e9;
-
-    int sum(int l, int r) {
-        return prefix[r + 1] - prefix[l];
-    }
-
-    int solve(int l, int r) {
-        if (l == r) return 0;
-        if (memo[l][r] != -1) return memo[l][r];
-
-        int ans = INF;
-
-        for (int mid = l; mid < r; mid += k - 1) {
-            ans = min(ans, solve(l, mid) + solve(mid + 1, r));
+    //Similar to Matrix Chain Multiplication optimization
+    vector<int> presum;
+    int solve(vector<int>& stones, int k, int left, int right, vector<vector<int>>& dp){
+        if(right == left) return 0;
+        if(dp[left][right] != -1) return dp[left][right];
+        
+        int res = 1e9;
+        for(int i = left; i < right; i=i+k-1){
+            res = min(res, solve(stones, k, left, i, dp) + solve(stones, k, i+1, right, dp));
         }
-
-        // Can merge into one pile only when valid
-        if ((r - l) % (k - 1) == 0) {
-            ans += sum(l, r);
+        
+        //this cumulative sum evaluation separately, as that of MCX
+        if((right - left)%(k-1) ==0){
+            res += presum[right+1] - presum[left];
         }
-
-        return memo[l][r] = ans;
+        return dp[left][right] = res;
     }
-
-    int mergeStones(vector<int>& stones, int K) {
-        n = stones.size();
-        k = K;
-
-        // Impossible check
-        if ((n - 1) % (k - 1) != 0) return -1;
-
-        // Prefix sum
-        prefix.assign(n + 1, 0);
-        for (int i = 0; i < n; i++)
-            prefix[i + 1] = prefix[i] + stones[i];
-
-        memo.assign(n, vector<int>(n, -1));
-
-        return solve(0, n - 1);
+           
+    int mergeStones(vector<int>& stones, int k) {
+        if((stones.size() - 1)%(k-1) != 0) return -1;
+        presum.push_back(0);
+        for(auto s: stones) presum.push_back(s + presum.back());
+        vector<vector<int>> dp(32, vector<int> (32, -1));
+        return solve(stones, k, 0, stones.size()-1, dp);
     }
 };

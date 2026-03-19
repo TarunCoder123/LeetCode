@@ -11,20 +11,22 @@
  */
 class Solution {
 public:
-    int count=0;
-    int ans=-1;
-    void value(TreeNode* root,int k){
-        if(!root)return;
-        value(root->left,k);
-        count++;
-        if(count==k){
-            ans=root->val;
-            return;
-        }
-        value(root->right,k);
+int kthSmallest(TreeNode* root, int k) {
+    stack<TreeNode*> st;
+    TreeNode* curr=root;
+
+    while(true){
+       while(curr){
+         st.push(curr);
+	 curr=curr->left;
+       }
+
+       curr=st.top();st.pop();
+
+       k--;
+       if(k==0)return curr->val;
+
+       curr=curr->right;
     }
-    int kthSmallest(TreeNode* root, int k) {
-        value(root,k);
-        return ans;
-    }
+}
 };

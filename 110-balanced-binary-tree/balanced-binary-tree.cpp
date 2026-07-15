@@ -11,6 +11,14 @@
  */
 class Solution {
 public:
+    // pair<int,bool> solve(TreeNode* root){
+    //     if(root==NULL)return {0,true};
+    //     pair<int,bool> p1=solve(root->left);
+    //     pair<int,bool> p2=solve(root->right);
+    //     int height=max(p1.first,p2.first)+1;
+    //     bool value=(abs(p1.first-p2.first)<=1);
+    //     return {height,value && p1.second && p2.second};
+    // }
     pair<int,bool> solve(TreeNode* root){
         if(root==NULL)return {0,true};
         pair<int,bool> p1=solve(root->left);
